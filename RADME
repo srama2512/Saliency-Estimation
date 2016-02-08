@@ -1,0 +1,58 @@
+This package contains our implementation for 
+"Salient Object Detection: A Discriminative Regional Feature Integration Approach" by Huaizu Jiang, Jingdong Wang, Zejian Yuan, Yang Wu, Nanning Zheng, and Shipeng Li. CVPR 2013.
+
+LICENSE
+###########################################################################
+Copyright (C) 2013 Huaizu Jiang
+Xi'an Jiaotong University.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful but
+WITHOUT WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PUPROSE.  See the GNU General Public License
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+Details of GPL License available in GNU_GPL_License.txt at base of this
+source tree.
+
+This software is only available for non-commercial use.  Contact Huaizu Jiang 
+(jianghuaizu@gmail.com) with questions regarding commercial licensing.
+
+Installation
+###########################################################################
+This code is tested with MATLAB 2010b on Linux x86_64.
+Run compile.m to compile the contained code. Our code is dependent on some 
+other third-party packages. Download them and refer to the documentation 
+for installation.
+
+1. Random Forest implementation for MATLAB
+https://code.google.com/p/randomforest-matlab/
+We use the regression part.
+
+2. gPb edge detector
+http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_source.tgz
+We need the textons computation code, which can be found at 
+${BSR_DIR}/grouping/source/gpb_src/matlab/segmentation/mex_pb_parts_final_selected.cc
+Since only textons computation is required, you can comment the lines from 206 to 266, to save the computational time.
+
+Usage
+###########################################################################
+See demo.m for a demo of salient object detection.
+
+Train your saliency regressor
+###########################################################################
+Suppose your saliency features are stored at x, and saliency lables at y, you can simply call 
+	regressor = regRF_train(x, y)
+at MATLAB to train your own regressor. And please check LearnSaliencyFusionWeight.m to see how to learn the saliency fusion weight on multiple segmentations.
+
+Acknowledgement
+###########################################################################
+We use the boosting code of Derek Hoiem of University of Illinois at Urbana-Champaign, the image segmentation code of Pedro Felzenszwalb of Brown University, and texture computation code of David Martin.
+
+Any comments or bugs report are greatly appreciated. Please contact Huaizu Jiang (jianghuaizu@gmail.com).
